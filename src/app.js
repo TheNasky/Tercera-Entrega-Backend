@@ -4,7 +4,7 @@ import ProductManager from "./productManager.js";
 const manager = new ProductManager('products.json')
 const app = express();
 
-const PORT = 8089
+const PORT = 8080
 
 const server = app.listen(PORT, () => {
 
