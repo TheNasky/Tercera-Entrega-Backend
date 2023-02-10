@@ -1,7 +1,7 @@
 import express from "express";
 import ProductManager from "./productManager.js";
 
-const productManager = new ProductManager('products.json')
+const productManager = new ProductManager('./products.json')
 const app = express();
 
 const PORT = 8080
@@ -17,6 +17,9 @@ server.on("error", (err) => {
 console.error(`Error: ${err}`)
 
 })
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/products', (req,res)=>{
   const {limit} = req.query
