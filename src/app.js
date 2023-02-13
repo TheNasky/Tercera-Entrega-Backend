@@ -4,22 +4,9 @@ import ProductManager from "./productManager.js";
 const productManager = new ProductManager('./products.json')
 const app = express();
 
-const PORT = 8080
-
-const server = app.listen(PORT, () => {
-
-console.log(`Servidor en puerto ${PORT}`)
-
-})
-
-server.on("error", (err) => {
-
-console.error(`Error: ${err}`)
-
-})
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
 
 app.get('/products', (req,res)=>{
   const {limit} = req.query
@@ -34,6 +21,7 @@ app.get('/products', (req,res)=>{
   })
 })
 
+
 app.get('/products/:productId',(req,res)=>{
   const id = req.params.productId
   productManager.getProductById(id).then(product=>{
@@ -44,3 +32,16 @@ app.get('/products/:productId',(req,res)=>{
 })
 
 
+const PORT = 8080
+
+const server = app.listen(PORT, () => {
+
+console.log(`Servidor en puerto ${PORT}`)
+
+})
+
+server.on("error", (err) => {
+
+console.error(`Error: ${err}`)
+
+})
